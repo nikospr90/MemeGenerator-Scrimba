@@ -60,4 +60,15 @@
         align-self: center;
     }
 
+    .meme--container{
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 20px;
+        width: 477px;
+        height:auto;
+        margin-top: 20px;
+        border-radius: 10px;
+    }
 }

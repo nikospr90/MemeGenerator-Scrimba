@@ -52,4 +52,15 @@
   cursor: pointer;
   width: 100%;
   align-self: center;
+}
+.meme .meme--container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  width: 477px;
+  height: auto;
+  margin-top: 20px;
+  border-radius: 10px;
 }/*# sourceMappingURL=Meme.css.map */
