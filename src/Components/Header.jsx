@@ -1,5 +1,5 @@
 import trollFace from "../assets/icons/troll-face.png";
-import "../Styles/Header.css";
+import "../Styles/Header/Header.css";
 
 function Header(){
     return(
