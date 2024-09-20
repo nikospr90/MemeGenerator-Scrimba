@@ -3,14 +3,6 @@ import { useState } from "react";
 import { useEffect } from "react";
 
 function Meme(){
-    
-    // setAllMemeImages(prevState => prevState = file.data.memes);
-    // console.log(allMemeImages);
-    
-
-
-
-
     const [meme, setMeme] = useState({topText: "", bottomText: "", randomImage:"https://i.imgflip.com/1g8my4.jpg"});
     const [allMemeImages, setAllMemeImages] = useState([]);
     
@@ -19,7 +11,6 @@ function Meme(){
         .then(response => response.json())
         .then(data => setAllMemeImages(data.data.memes))
     }, []);
-
 
     function getMeme(){
         const data = allMemeImages;
