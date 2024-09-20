@@ -1,24 +1,34 @@
 import "../Styles/Meme/Meme.css";
-import file from "../memesData";
 import { useState } from "react";
+import { useEffect } from "react";
 
 function Meme(){
     
     // setAllMemeImages(prevState => prevState = file.data.memes);
     // console.log(allMemeImages);
     
+
+
+
+
     const [meme, setMeme] = useState({topText: "", bottomText: "", randomImage:"https://i.imgflip.com/1g8my4.jpg"});
-    const [allMemeImages, setAllMemeImages] = useState(file);
+    const [allMemeImages, setAllMemeImages] = useState([]);
     
+    useEffect(() => {
+        fetch("https://api.imgflip.com/get_memes")
+        .then(response => response.json())
+        .then(data => setAllMemeImages(data.data.memes))
+    }, []);
+
+
     function getMeme(){
-        const data = allMemeImages.data.memes
+        const data = allMemeImages;
         let index = Math.floor(Math.random() * data.length);
         let url = data[index].url;
         setMeme(prevState => ({ 
             ...prevState,
             randomImage: url
         }));
-        console.log(memeImage);
     }
 
     function handleChange(event){
