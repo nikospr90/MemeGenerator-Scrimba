@@ -5,10 +5,7 @@ import { useState } from "react";
 function Meme(){
     
     // setAllMemeImages(prevState => prevState = file.data.memes);
-    
-    
     // console.log(allMemeImages);
-    
     
     const [meme, setMeme] = useState({topText: "", bottomText: "", randomImage:"https://i.imgflip.com/1g8my4.jpg"});
     const [allMemeImages, setAllMemeImages] = useState(file);
@@ -17,13 +14,19 @@ function Meme(){
         const data = allMemeImages.data.memes
         let index = Math.floor(Math.random() * data.length);
         let url = data[index].url;
-        let topText = document.getElementById("toptext").value;
-        let bottomText = document.getElementById("bottomtext").value;
         setMeme(prevState => ({ 
             ...prevState,
             randomImage: url
         }));
         console.log(memeImage);
+    }
+
+    function handleChange(event){
+        const {name, value} = event.target;
+        setMeme(prevState => ({
+            ...prevState,
+            [name]: value
+        }));
     }
 
     return (
@@ -32,16 +35,36 @@ function Meme(){
                 <div className="inputs">
                     <div className="input--left">
                         <label htmlFor="toptext" >Top Text</label>
-                        <input type="text" id ="toptext" className="toptext" placeholder="Shut up" />
+                        <input 
+                            type="text" 
+                            id ="toptext" 
+                            className="toptext" 
+                            placeholder="Shut up"
+                            name="topText"
+                            value={meme.topText}
+                            onChange={handleChange} 
+                        />
                     </div>
                     <div className="input--right">
                         <label htmlFor="bottomtext">Bottom Text</label>
-                        <input type="text" id="bottomtext" className="bottomtext" placeholder="And take my money" />
+                        <input 
+                            type="text" 
+                            id="bottomtext"
+                            className="bottomtext" 
+                            placeholder="And take my money" 
+                            name="bottomText"
+                            value={meme.bottomText}
+                            onChange={handleChange}
+                        />
                     </div>
                 </div>
                 <button onClick={getMeme} type="submit">Get a new memeImage image 🚮</button>
             </div>
-            <img className="meme--container" src={meme.randomImage} alt="meme image"/>
+            <div className="meme--container">
+                <img className="meme--image" src={meme.randomImage} alt="meme image"/>
+                <h2 className="meme--text top">{meme.topText}</h2>
+                <h2 className="meme--text bottom">{meme.bottomText}</h2>
+            </div>
         </div>
     )
 }
